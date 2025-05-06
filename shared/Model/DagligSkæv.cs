@@ -23,8 +23,8 @@ public class DagligSkæv : Ordination {
     }
 
 	public void opretDosis(Dosis dosis) {
-        doser.Add(dosis);
-	}
+        opretDosis(dosis.tid, dosis.antal);
+    }
 
 	public override double samletDosis() {
 		TimeOnly startTime = TimeOnly.FromDateTime(startDen);

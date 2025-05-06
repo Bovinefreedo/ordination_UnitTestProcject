@@ -34,9 +34,10 @@ public class ServiceTest
 
         Assert.AreEqual(1, service.GetDagligFaste().Count());
 
-        service.OpretDagligFast(patient.PatientId, lm.LaegemiddelId,
+        DagligFast dagligFast =service.OpretDagligFast(patient.PatientId, lm.LaegemiddelId,
             2, 2, 1, 0, DateTime.Now, DateTime.Now.AddDays(3));
 
+        Assert.IsTrue(dagligFast.OrdinationId > 0);
         Assert.AreEqual(2, service.GetDagligFaste().Count());
     }
 
@@ -93,7 +94,20 @@ public class ServiceTest
         pn = service.GetPNs().FirstOrDefault(x => x.OrdinationId == id);
 
         Assert.AreEqual(1, pn.getAntalGangeGivet());
-    }   
+    }
 
+    [TestMethod]
+    public void weightTest() { 
+        Patient p1 = service.GetPatienter().FirstOrDefault((x => x.navn == "Jane Jensen"));
+        Patient p2 = service.GetPatienter().FirstOrDefault((x => x.navn == "Hans Jørgensen"));
+        Patient p3 = service.GetPatienter().FirstOrDefault((x => x.navn == "Ib Hansen"));
+
+
+        Laegemiddel lm = service.GetLaegemidler().FirstOrDefault((x => x.navn == "Prednisolon"));
+
+        Assert.AreEqual(0.1d * 19, service.GetAnbefaletDosisPerDøgn(p1.PatientId, lm.LaegemiddelId));
+        Assert.AreEqual(0.15d * 89, service.GetAnbefaletDosisPerDøgn(p2.PatientId, lm.LaegemiddelId));
+        Assert.AreEqual(0.2d * 130, service.GetAnbefaletDosisPerDøgn(p3.PatientId, lm.LaegemiddelId));
+    }
 
 }

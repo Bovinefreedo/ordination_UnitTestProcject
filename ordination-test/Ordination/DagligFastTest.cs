@@ -28,7 +28,7 @@ namespace ordination_test.Ordination
             Laegemiddel laegemiddel = new Laegemiddel("Test", 1, 1, 1, "tablet");
             DateTime start = new DateTime(2025, 10, 10, 12, 0, 0);
             DateTime start2 = new DateTime(2025, 10, 12, 12, 0, 0);
-            DateTime slut1 = new DateTime(2025, 10, 12, 12, 0, 1);
+            DateTime slut1 = new DateTime(2025, 10, 12, 12, 0, 0);
             DateTime slut2 = new DateTime(2025, 10, 13, 12, 0, 0);
             DateTime slut3 = new DateTime(2025, 10, 13, 18, 0, 0);
             DagligFast ordination1 = new DagligFast(start, slut1, laegemiddel, 1, 1, 1, 1);

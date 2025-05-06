@@ -52,5 +52,12 @@ public class PatientTest
         Assert.ThrowsException<ArgumentException>(() => Patient.validateCPR("011399-1234"));
     }
 
+    [TestMethod]
+    public void WeightBelowOneThrowsExceptionTest()
+    {
+        Assert.ThrowsException<ArgumentException>(() => new Patient("160563-1234", "John", -1));
+        Assert.ThrowsException<ArgumentException>(() => new Patient("030699-1234", "Law", 0));
+    }
+
 
 }
